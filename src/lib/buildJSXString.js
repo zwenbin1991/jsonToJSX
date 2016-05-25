@@ -13,6 +13,7 @@ const __SPACE__ = ' ';
 const __LEFT_BOUND__ = '<';
 const __RIGHT_BOUND__ = '>';
 const __ENTER__ = '\n';
+const __SPLITTER__ = '/';
 
 /**
  * 支持值为函数类型的对象序列化
@@ -51,24 +52,25 @@ const buildIndent = (count = 2) =>
 /**
  * 根据jsx tree object生成jsx字符串
  *
- * @param {Number} count 缩进符个数
- * @return {String}
+ * @param {Array} jsxTrees jsxTree数组
+ * @param {Number} indent 缩进字符
+ * @return {Array}
  */
-const getJsxByJsxTree = (jsxTree, indent = 2) => {
+const getJsxByJsxTree = (jsxTrees, indent = 2) => {
     let componentName, props, childrens, jsx;
 
-    if (Array.isArray(jsxTree)) { // 如果jsxTree是数组
-
-
+    if (Array.isArray(jsxTrees)) { // 如果jsxTree是数组
+        return jsxTrees.map(jsxTree => getJsxByJsxTree(jsxTree, indent));
     } else { // 如果jsTree是对象
-        componentName = jsxTree.componentName;
-        props = jsxTree.props;
-        childrens = jsxTree.childrens;
+        componentName = jsxTrees.componentName;
+        props = jsxTrees.props;
+        childrens = jsxTrees.childrens;
         // 将缩进、左边界符、属性序列化、右边界符、回车拼接成  <Xxoo a='a' b=10 c='a.click'>
         jsx = buildIndent(indent) + __LEFT_BOUND__ + componentName + buildProps(props) + __RIGHT_BOUND__ + __ENTER__;
 
         if (childrens) jsx += getJsxByJsxTree(childrens, indent + 2);
-        
+
+        return buildIndent(indent) + __LEFT_BOUND__ + __SPLITTER__ + componentName + __RIGHT_BOUND__;
     }
 };
 
