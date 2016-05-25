@@ -1,0 +1,25 @@
+{
+  "name": "json-to-jsx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zwenbin1991/jsonToJSX.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zwenbin1991/jsonToJSX/issues"
+  },
+  "homepage": "https://github.com/zwenbin1991/jsonToJSX#readme",
+  "devDependencies": {
+    "babel-core": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2"
+  }
+}

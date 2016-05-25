@@ -1,0 +1,9 @@
+json转jsx实现步骤
+
+- 读取命令行参数（命令行提供文件名），得到json数据
+
+- 将json对象组合成jsx tree结构的对象
+
+- 将jsx tree object生成字符串描述
+
+-- 因为做成命令行工具，所以发布到npm包，有利于npm管理
