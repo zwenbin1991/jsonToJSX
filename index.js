@@ -1,1 +1,1 @@
-
+module.exports = exports = require('./src/lib/buildJSXString').buildJSXString;

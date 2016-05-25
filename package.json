@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "constructors": [
+    "法克 fake@163.com"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zwenbin1991/jsonToJSX.git"
@@ -21,6 +24,8 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-register": "^6.9.0",
     "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2"
+    "gulp-babel": "^6.1.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3"
   }
 }

@@ -11,9 +11,9 @@ import gulp from 'gulp';
 import gulpBabel from 'gulp-babel';
 
 gulp.task('babel', () => {
-    gulp.src('src/**/*.js')
+    gulp.src('transformer/**/*.js')
         .pipe(gulpBabel({ presets: ['es2015'] }))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('src'));
 });
 
-gulp.task('default', ['babel']);
+gulp.task('dev', ['babel']);
