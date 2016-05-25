@@ -1,0 +1,17 @@
+[
+  {
+    "id": 0,
+    "nickname": "aa",
+    "bg": "url(../xx.jpg)"
+  },
+  {
+    "id": 1,
+    "nickname": "bb",
+    "bg": "url(../oo.jpg)"
+  },
+  {
+    "id": 2,
+    "nickname": "cc",
+    "bg": "url(../gg.jpg)"
+  }
+]

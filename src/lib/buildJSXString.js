@@ -57,7 +57,7 @@ const buildIndent = (count = 2) =>
  * @return {Array}
  */
 const getJsxByJsxTree = (jsxTrees, indent = 2) => {
-    let componentName, props, childrens, jsx;
+    let componentName, props, childrens, innerText, jsx;
 
     if (Array.isArray(jsxTrees)) { // 如果jsxTree是数组
         return jsxTrees.map(jsxTree => getJsxByJsxTree(jsxTree, indent));
@@ -65,12 +65,18 @@ const getJsxByJsxTree = (jsxTrees, indent = 2) => {
         componentName = jsxTrees.componentName;
         props = jsxTrees.props;
         childrens = jsxTrees.childrens;
+        innerText = jsxTrees.innerText;
+
         // 将缩进、左边界符、属性序列化、右边界符、回车拼接成  <Xxoo a='a' b=10 c='a.click'>
         jsx = buildIndent(indent) + __LEFT_BOUND__ + componentName + buildProps(props) + __RIGHT_BOUND__ + __ENTER__;
 
+        // 如果存在子组件，则继续递归处理
         if (childrens) jsx += getJsxByJsxTree(childrens, indent + 2);
 
-        return buildIndent(indent) + __LEFT_BOUND__ + __SPLITTER__ + componentName + __RIGHT_BOUND__;
+        // 如果子组件是纯文本
+        if (!childrens && innerText != null) jsx += stringify(innerText);
+
+        return jsx += buildIndent(indent) + __LEFT_BOUND__ + __SPLITTER__ + componentName + __RIGHT_BOUND__;
     }
 };
 
@@ -82,5 +88,5 @@ const getJsxByJsxTree = (jsxTrees, indent = 2) => {
  * @param {Array} childrens 子组件集合
  * @return {String}
  */
-export default (json, componentName, childrens) =>
+export const buildJSXString = (json, componentName, childrens) =>
     getJsxByJsxTree(parseJSXTree(json, componentName, childrens));
