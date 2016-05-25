@@ -8,14 +8,15 @@
 'use strict';
 
 /**
-* json=>jsx tree object
-*
-* @param {Object|Array} jsons 数据
-* @param {String} componentName 组件名
-* @param {Array} childrens 子组件集合 [可选]
-*
-example：
-  var jsx = parseJSXTree([{ id: 0, nickname: 'aa', bg: 'url(../xx.jpg)' }, { id: 1, nickname: 'bb', bg: 'url(../oo.jpg)' }],
+ * json=>jsx tree object
+ *
+ * @param {Object|Array} jsons 数据
+ * @param {String} componentName 组件名
+ * @param {Array} childrens 子组件集合 [可选]
+ * @return {Array}
+ *
+ example：
+    var jsx = parseJSXTree([{ id: 0, nickname: 'aa', bg: 'url(../xx.jpg)' }, { id: 1, nickname: 'bb', bg: 'url(../oo.jpg)' }],
        'Page',
        [
            [
@@ -42,8 +43,8 @@ example：
                props: { id: 1, nickname: 'bb', bg: 'url(../oo.jpg)' }
           }
      ]
-  */
-export const parseJSXTree = (jsons, componentName = 'div', childrens) => {
+ */
+export const parseJSXTree = (jsons, componentName = 'div', childrens = []) => {
     jsons = Array.isArray(jsons) ? jsons : [jsons];
 
     return jsons.map((json, idx) => ({ componentName: componentName, props: json, childrens: childrens[idx] }));
